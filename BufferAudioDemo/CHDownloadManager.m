@@ -61,7 +61,6 @@
     NSLog(@"开始下载音频文件url : %@",self.audioUrl);
     //设置cookies
     downloadRequest.HTTPMethod = @"GET";
-    [downloadRequest setValue:@"MUSIC_U=9aef12496237d0d19a23de777f4a30da45c650f8615c8cc10f8f530e5daa4ee7083c9eb2e05cbdebaf51468f05572d77cb19b68a33677785; os=iPhone OS; osver=9.3; appver=3.3.1; deviceId=0159bb4c93f021680a2d6ce7480c4171" forHTTPHeaderField:@"Cookie"];
     
     NSURLConnection *downloadConnect = [[NSURLConnection alloc] initWithRequest:downloadRequest delegate:self];
     [downloadConnect scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];

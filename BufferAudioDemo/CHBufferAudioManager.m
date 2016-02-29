@@ -87,9 +87,16 @@ static void CHBufferCallBack(void * __nullable       inUserData,
 
 -(void)bufferAudioWithPath:(NSString*)path{
     
-    OSStatus status = AudioFileOpenURL((__bridge CFURLRef)[NSURL fileURLWithPath:path], kAudioFileReadPermission, 0, &_audioFile);
+    NSURL *audioFileURL = [NSURL fileURLWithPath:path];
+    AudioFileTypeID fileTypeID = kAudioFileMP3Type;
+    if ([audioFileURL.lastPathComponent containsString:@"m4a"]){
+        fileTypeID = kAudioFileM4AType;
+    }else{
+        fileTypeID = 0;
+    }
+    OSStatus status = AudioFileOpenURL((__bridge CFURLRef)audioFileURL, kAudioFileReadPermission, fileTypeID, &_audioFile);
     if (status != noErr) {
-        NSLog(@"打开音频文件失败。。。");
+        NSLog(@"打开音频文件失败。。。status = %d",status);
         dispatch_async(dispatch_get_main_queue(), ^{
             NSError *error = [NSError errorWithDomain:@"获取文件失败" code:102 userInfo:@{NSUnderlyingErrorKey:@"获取音频文件失败"}];
             if ([self.delegate respondsToSelector:@selector(audioBufferDidFailed:)]) {

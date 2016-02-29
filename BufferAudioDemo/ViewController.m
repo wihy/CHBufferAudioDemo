@@ -27,7 +27,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     //测试用网易云音乐下载地址需要配置鉴权
-    NSString *mp3Url = @"http://m8.music.126.net/20160229144300/c55db5136620f98c443a64d28993c727/ymusic/0c7a/0f7a/af09/07428e57fccd1e064e8d7afa30757573.mp3";
+//    NSString *mp3Url = @"http://m8.music.126.net/20160229144300/c55db5136620f98c443a64d28993c727/ymusic/0c7a/0f7a/af09/07428e57fccd1e064e8d7afa30757573.mp3";
+    NSString *mp3Url =@"http://download.xmcdn.com/group10/M07/02/2D/wKgDaVbC5TaygXJCAInpKwDe5bk489.m4a";
     self.bufferAudioManager = [CHBufferAudioManager bufferManagerWithAudioUrl:mp3Url];
     self.bufferAudioManager.delegate = self;
 }
